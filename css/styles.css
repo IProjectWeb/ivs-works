@@ -541,33 +541,11 @@ img {
 /* ==========================================================================
    About / Quiénes Somos Section
    ========================================================================== */
-.about-card-hero {
-  max-width: 960px;
+.about-wrapper {
+  max-width: 920px;
   margin: 0 auto;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  padding: 3.5rem 2rem;
   text-align: center;
   position: relative;
-  overflow: hidden;
-  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.6);
-}
-
-@media (min-width: 768px) {
-  .about-card-hero {
-    padding: 4rem 3.5rem;
-  }
-}
-
-.about-card-hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 240px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
 }
 
 .about-badge {
