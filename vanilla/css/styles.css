@@ -25,6 +25,7 @@
   --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --font-display: 'Space Grotesk', 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
 
   --max-width: 1280px;
   --header-height: 76px;
@@ -431,6 +432,7 @@ img {
   font-size: 2.25rem;
   font-weight: 900;
   line-height: 1;
+  text-transform: uppercase;
   color: var(--text-primary);
   max-width: 58rem;
   margin: 0 auto 1.5rem auto;
@@ -449,8 +451,11 @@ img {
 }
 
 .hero-stroke {
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--accent-cyan);
+  font-family: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--accent-cyan);
   display: inline-block;
 }
 

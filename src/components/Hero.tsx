@@ -18,10 +18,7 @@ export const Hero: React.FC<HeroProps> = ({ onQuoteClick, onPortfolioClick }) =>
         {/* Main Headline with Sleek Interface Stroke */}
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-outfit font-black uppercase tracking-tight text-white leading-[0.95] max-w-4xl mx-auto">
           Tu negocio necesita una{' '}
-          <span
-            className="text-transparent inline-block"
-            style={{ WebkitTextStroke: '1.5px #22d3ee' }}
-          >
+          <span className="text-cyan-400 inline-block">
             web que venda
           </span>
         </h1>
