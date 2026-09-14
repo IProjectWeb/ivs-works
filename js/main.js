@@ -714,55 +714,91 @@ function initFAQ() {
    5. Contact Form Handler (WhatsApp & Form Submission)
    ========================================================================== */
 function initContactForm() {
-  const form = document.getElementById('contact-form');
-  const btnWA = document.getElementById('btn-send-whatsapp');
-  const formFields = document.getElementById('form-fields-wrapper');
-  const successBox = document.getElementById('form-success-message');
+  const form = document.getElementById('quote-form') || document.getElementById('contact-form');
+  const btnWA = document.getElementById('btn-submit-whatsapp') || document.getElementById('btn-send-whatsapp');
+  const btnEmail = document.getElementById('btn-submit-email');
+  const formFields = document.getElementById('form-fields-wrap') || document.getElementById('form-fields-wrapper');
+  const successBox = document.getElementById('form-success-state') || document.getElementById('form-success-message');
+  const urgencyBtns = document.querySelectorAll('.urgency-btn');
+  let selectedUrgency = 'En 1 a 2 semanas';
+
+  if (urgencyBtns.length > 0) {
+    urgencyBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        urgencyBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedUrgency = btn.getAttribute('data-urgency') || btn.textContent.trim();
+      });
+    });
+  }
 
   function getFormData() {
     return {
       name: (document.getElementById('form-name')?.value || '').trim(),
       email: (document.getElementById('form-email')?.value || '').trim(),
       phone: (document.getElementById('form-phone')?.value || '').trim(),
-      plan: document.getElementById('form-plan-select')?.value || 'landing',
-      budget: document.getElementById('form-budget-select')?.value || 'none',
-      timeline: document.getElementById('form-timeline-select')?.value || 'flexible',
+      business: (document.getElementById('form-business')?.value || '').trim(),
+      plan: document.getElementById('form-plan-select')?.value || 'intermedio',
+      urgency: selectedUrgency,
       message: (document.getElementById('form-message')?.value || '').trim()
     };
   }
 
-  function formatWhatsAppText(data) {
-    const planLabels = {
-      'basico': 'Landing Page (Desde $200 USD)',
-      'intermedio': 'Sitio Corporativo (Desde $350 USD)',
-      'premium': 'Sitio Premium (Desde $550 USD)',
-      'mant_esencial': 'Mantenimiento Esencial ($25 USD / mes)',
-      'mant_estandar': 'Mantenimiento Estándar ($50 USD / mes)',
-      'mant_premium': 'Mantenimiento Premium ($100 USD / mes)',
-      'mant_basico': 'Mantenimiento Esencial ($25 USD / mes)',
-      'mant_pro': 'Mantenimiento Estándar ($50 USD / mes)',
-      'mini_menu': 'Menú Digital con QR (Desde $40 USD)',
-      'mini_catalogo': 'Catálogo Digital (Desde $40 USD)',
-      'mini_tarjeta': 'Tarjeta de Presentación Digital (Desde $30 USD)',
-      'mini_sitio': 'Mini Sitio / Solución Puntual',
-      'custom': 'Proyecto / Alcance Personalizado'
-    };
+  const planLabels = {
+    'basico': 'Landing Page (Desde $200 USD)',
+    'intermedio': 'Sitio Corporativo (Desde $350 USD)',
+    'premium': 'Sitio Premium (Desde $550 USD)',
+    'mant_esencial': 'Mantenimiento Esencial ($25 USD / mes)',
+    'mant_estandar': 'Mantenimiento Estándar ($50 USD / mes)',
+    'mant_premium': 'Mantenimiento Premium ($100 USD / mes)',
+    'mant_basico': 'Mantenimiento Esencial ($25 USD / mes)',
+    'mant_pro': 'Mantenimiento Estándar ($50 USD / mes)',
+    'mini_menu': 'Menú Digital con QR (Desde $40 USD)',
+    'mini_catalogo': 'Catálogo Digital (Desde $40 USD)',
+    'mini_tarjeta': 'Tarjeta de Presentación Digital (Desde $30 USD)',
+    'mini_sitio': 'Mini Sitio / Solución Puntual',
+    'custom': 'Proyecto / Alcance Personalizado'
+  };
 
-    let text = `🚀 *NUEVA CONSULTA DE SITIO WEB - IVS WORKS*\n`;
+  function formatWhatsAppText(data) {
+    let text = `*NUEVA CONSULTA DE SITIO WEB - IVS WORKS*\n`;
     text += `━━━━━━━━━━━━━━━━━━━━━\n`;
-    text += `👤 *Nombre:* ${data.name || 'No especificado'}\n`;
-    if (data.email) text += `📧 *Email:* ${data.email}\n`;
-    if (data.phone) text += `📱 *Teléfono:* ${data.phone}\n`;
-    text += `📦 *Plan de Interés:* ${planLabels[data.plan] || data.plan}\n`;
-    text += `💰 *Presupuesto:* ${data.budget}\n`;
-    text += `⏱️ *Tiempo estimado:* ${data.timeline}\n`;
+    text += `*Nombre:* ${data.name || 'No especificado'}\n`;
+    if (data.phone) text += `*Teléfono:* ${data.phone}\n`;
+    if (data.email) text += `*Email:* ${data.email}\n`;
+    if (data.business) text += `*Giro de negocio:* ${data.business}\n`;
+    text += `*Plan de Interés:* ${planLabels[data.plan] || data.plan}\n`;
+    text += `*Tiempo deseado:* ${data.urgency}\n`;
     if (data.message) {
       text += `━━━━━━━━━━━━━━━━━━━━━\n`;
-      text += `💬 *Mensaje del Cliente:*\n${data.message}\n`;
+      text += `*Mensaje / Detalles:*\n${data.message}\n`;
     }
     text += `━━━━━━━━━━━━━━━━━━━━━\n`;
     text += `Enviado desde el formulario oficial de ivsworks.com`;
     return text;
+  }
+
+  function showSuccess(data) {
+    if (formFields && successBox) {
+      formFields.style.display = 'none';
+      successBox.style.display = 'block';
+
+      const sName = document.getElementById('summary-name');
+      const sEmail = document.getElementById('summary-email');
+      const sPhone = document.getElementById('summary-phone');
+      const sPlan = document.getElementById('summary-plan');
+      const sUrgency = document.getElementById('summary-urgency');
+      const namePlaceholder = document.getElementById('success-user-name');
+
+      if (sName) sName.textContent = data.name || 'No especificado';
+      if (sEmail) sEmail.textContent = data.email || 'No especificado';
+      if (sPhone) sPhone.textContent = data.phone || 'No especificado';
+      if (sPlan) sPlan.textContent = planLabels[data.plan] || data.plan;
+      if (sUrgency) sUrgency.textContent = data.urgency || 'No especificado';
+      if (namePlaceholder) {
+        namePlaceholder.textContent = data.name ? `¡Muchas gracias, ${data.name}!` : '¡Muchas gracias!';
+      }
+    }
   }
 
   if (btnWA) {
@@ -776,9 +812,23 @@ function initContactForm() {
 
       const text = formatWhatsAppText(data);
       const encoded = encodeURIComponent(text);
-      const waUrl = `https://wa.me/51928080803?text=${encoded}`;
+      const waUrl = `https://wa.me/50762125245?text=${encoded}`;
       window.open(waUrl, '_blank');
-      showSuccess(data.name);
+      showSuccess(data);
+    });
+  }
+
+  if (btnEmail) {
+    btnEmail.addEventListener('click', () => {
+      const data = getFormData();
+      if (!data.name || !data.email) {
+        alert('Por favor completa tu nombre y correo electrónico.');
+        if (!data.name) document.getElementById('form-name')?.focus();
+        else document.getElementById('form-email')?.focus();
+        return;
+      }
+
+      showSuccess(data);
     });
   }
 
@@ -786,13 +836,12 @@ function initContactForm() {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const data = getFormData();
-      
+
       if (!data.name || !data.email) {
         alert('Por favor completa tu nombre y correo electrónico para ponernos en contacto.');
         return;
       }
 
-      // Simulate sending
       const submitBtn = form.querySelector('button[type="submit"]');
       if (submitBtn) {
         submitBtn.textContent = 'Enviando consulta...';
@@ -800,24 +849,27 @@ function initContactForm() {
       }
 
       setTimeout(() => {
-        showSuccess(data.name);
+        showSuccess(data);
         if (submitBtn) {
           submitBtn.textContent = 'Enviar Consulta por Correo';
           submitBtn.disabled = false;
         }
-      }, 700);
+      }, 500);
     });
   }
 
-  function showSuccess(userName) {
-    if (formFields && successBox) {
-      formFields.style.display = 'none';
-      successBox.style.display = 'block';
-      const namePlaceholder = document.getElementById('success-user-name');
-      if (namePlaceholder) {
-        namePlaceholder.textContent = userName ? `¡Muchas gracias, ${userName}!` : '¡Muchas gracias!';
-      }
-    }
+  const btnCopy = document.getElementById('btn-copy-summary');
+  if (btnCopy) {
+    btnCopy.addEventListener('click', () => {
+      const data = getFormData();
+      const summaryText = `Cotización Solicitada - IVS WORKS:\nNombre: ${data.name}\nCorreo: ${data.email}\nTeléfono: ${data.phone}\nPlan: ${planLabels[data.plan] || data.plan}\nPlazo: ${data.urgency}\nMensaje: ${data.message}`;
+      navigator.clipboard.writeText(summaryText);
+      const originalText = btnCopy.textContent;
+      btnCopy.textContent = '¡Copiado!';
+      setTimeout(() => {
+        btnCopy.textContent = originalText;
+      }, 2500);
+    });
   }
 
   const btnResetForm = document.getElementById('btn-reset-form');

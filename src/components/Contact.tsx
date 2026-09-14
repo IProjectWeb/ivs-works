@@ -59,13 +59,13 @@ export const Contact: React.FC<ContactProps> = ({
   const generateWhatsAppMessage = () => {
     const text = `¡Hola Isaac! Me gustaría cotizar un proyecto web:
 
-👤 *Nombre:* ${formData.name || 'No especificado'}
-📧 *Correo:* ${formData.email || 'No especificado'}
-📱 *Teléfono:* ${formData.phone || 'No especificado'}
-💼 *Giro de negocio:* ${formData.businessType || 'No especificado'}
-📦 *Plan de Interés:* ${planLabels[formData.plan]}
-📅 *Tiempo deseado:* ${formData.urgency}
-📝 *Detalles del proyecto:* 
+*Nombre:* ${formData.name || 'No especificado'}
+*Correo:* ${formData.email || 'No especificado'}
+*Teléfono:* ${formData.phone || 'No especificado'}
+*Giro de negocio:* ${formData.businessType || 'No especificado'}
+*Plan de Interés:* ${planLabels[formData.plan]}
+*Tiempo deseado:* ${formData.urgency}
+*Detalles del proyecto:* 
 ${formData.message || 'Quiero más información sobre tus servicios de desarrollo web.'}
 
 ¿Podemos coordinar una propuesta?`;
@@ -332,10 +332,10 @@ Mensaje: ${formData.message}`;
                       <option value="mant_esencial">Mantenimiento Esencial ($25 USD / mes)</option>
                       <option value="mant_estandar">Mantenimiento Estándar ($50 USD / mes) [Recomendado]</option>
                       <option value="mant_premium">Mantenimiento Premium ($100 USD / mes)</option>
-                      <option value="mini_menu">🍽️ Menú Digital con QR (Desde $40 USD)</option>
-                      <option value="mini_catalogo">💇 Catálogo Digital (Desde $40 USD)</option>
-                      <option value="mini_tarjeta">🔗 Tarjeta de Presentación Digital (Desde $30 USD)</option>
-                      <option value="mini_sitio">✨ Mini Sitio / Solución Puntual</option>
+                      <option value="mini_menu">Menú Digital con QR (Desde $40 USD)</option>
+                      <option value="mini_catalogo">Catálogo Digital (Desde $40 USD)</option>
+                      <option value="mini_tarjeta">Tarjeta de Presentación Digital (Desde $30 USD)</option>
+                      <option value="mini_sitio">Mini Sitio / Solución Puntual</option>
                       <option value="custom">Proyecto / Alcance Personalizado</option>
                     </select>
                   </div>
