@@ -26,30 +26,30 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     category: 'landing',
     categoryLabel: 'Landing Page Corporativa',
     clientType: 'Asesoría Financiera & Auditoría en Panamá',
-    tagline: 'Estrategia, rigor técnico y captación de clientes corporativos por WhatsApp',
-    description: 'Landing page corporativa para consultoría financiera, auditoría, contabilidad y asesoría tributaria en Panamá. Diseñada con secciones de alto impacto (Hero con propuesta de valor, ¿Quiénes somos?, catálogo de soluciones con cotizador y módulo de contacto directo con formulario y botón de WhatsApp).',
-    tags: ['Landing Page', 'Consultoría Financiera', 'Cotizador de Servicios', 'Formulario Segmentado', 'WhatsApp Lead Gen'],
+    tagline: 'Presencia profesional para generar confianza y captar clientes directamente por WhatsApp',
+    description: 'Página web diseñada para una firma de asesoría financiera y contable. Presenta sus servicios con claridad, transmite seriedad ante empresas y clientes, e incluye botones directos para solicitar cotizaciones por WhatsApp.',
+    tags: ['Landing Page', 'Consultoría & Finanzas', 'Cotizador Online', 'Captación de Clientes', 'WhatsApp'],
     imageUrl: vvConsultingHero,
     gallery: [
       {
         url: vvConsultingHero,
-        title: 'Hero & Propuesta de Valor',
-        caption: 'Encabezado corporativo con propuesta de valor "Estrategia que define tu éxito", métricas de experiencia y llamada a la acción hacia WhatsApp.'
+        title: 'Portada Principal',
+        caption: 'Página principal con mensaje claro de bienvenida, datos de experiencia y botón de contacto directo.'
       },
       {
         url: vvConsultingNosotros,
-        title: 'Sobre Nosotros & Firma',
-        caption: 'Módulo "¿Quiénes somos?" y "Confianza y Experiencia", destacando más de una década asesorando empresas y equipo de contadores CPA.'
+        title: 'Sobre la Firma',
+        caption: 'Sección informativa sobre la trayectoria de la firma y el equipo de profesionales.'
       },
       {
         url: vvConsultingServicios,
-        title: 'Soluciones Integrales & Cotizador',
-        caption: 'Catálogo de servicios de Auditoría, Contabilidad y Asesoría Financiera con checklist detallado y botón de solicitar cotización.'
+        title: 'Servicios & Cotización',
+        caption: 'Catálogo de servicios de auditoría y contabilidad con opción para solicitar cotización.'
       },
       {
         url: vvConsultingContacto,
-        title: 'Contacto & Formulario de Consulta',
-        caption: 'Panel con datos de contacto en Ciudad de Panamá, horarios y formulario segmentado por servicio de interés para captar leads calificados.'
+        title: 'Contacto & Consultas',
+        caption: 'Ubicación, horarios y formulario para recibir consultas de clientes interesados.'
       }
     ],
     mediaType: 'image',
@@ -59,12 +59,12 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       bg: '#ffffff'
     },
     features: [
-      'Estructura de landing page corporativa de alta confianza optimizada para empresas y PYMES',
-      'Hero section con propuesta de valor clara y acceso directo a WhatsApp',
-      'Módulo "Nuestra Firma" para proyectar autoridad con equipo de contadores públicos autorizados (CPA)',
-      'Catálogo de soluciones (Auditoría, Contabilidad, Asesoría) con botón de solicitud de cotización',
-      'Formulario de contacto con selector de servicio de interés y botón de envío directo',
-      'Canal flotante de WhatsApp activo para atención inmediata en Panamá'
+      'Diseño profesional enfocado en transmitir credibilidad y seguridad',
+      'Presentación clara de servicios de auditoría, contabilidad y asesoría',
+      'Sección sobre la trayectoria del equipo para generar confianza',
+      'Botones directos para cotizar y consultar vía WhatsApp',
+      'Formulario fácil de usar para recibir solicitudes de clientes',
+      'Botón flotante de WhatsApp para atención rápida'
     ],
     mockupData: {
       heroTitle: 'Estrategia que define tu éxito',
@@ -80,34 +80,34 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   },
   {
     id: 'white-cloud-essentials',
-    title: 'White Cloud Essentials // Catálogo & Conversión',
+    title: 'White Cloud Essentials',
     category: 'landing',
-    categoryLabel: 'Landing Page de Alta Conversión',
-    clientType: 'Moda Urbana Minimalista & Accesorios',
-    tagline: 'Estilo atemporal, catálogo dinámico interactivo y pedidos directos vía WhatsApp & Yappy',
-    description: 'Landing page de alta conversión y catálogo dinámico con diseño minimalista blanco y negro para gorras estructuradas y accesorios. Diseñada con secciones estratégicas orientadas a venta directa: hero de alto impacto con propuesta de valor, selector instantáneo por categoría (Dad Hat, Snapback, Trucker, Beanie), buscador en tiempo real, sección editorial de filosofía y formulario de checkout rápido por WhatsApp.',
-    tags: ['Landing Page', 'Alta Conversión', 'Catálogo Dinámico', 'Checkout WhatsApp', 'Filtro en Vivo', 'Yappy Panamá'],
+    categoryLabel: 'Landing Page & Catálogo',
+    clientType: 'Moda Urbana & Accesorios',
+    tagline: 'Catálogo visual moderno y pedidos rápidos directo a WhatsApp y Yappy',
+    description: 'Página web y catálogo interactivo para una marca de gorras y moda urbana. Permite a los clientes explorar productos por categoría, buscar modelos al instante y hacer pedidos directamente por WhatsApp sin complicaciones ni comisiones.',
+    tags: ['Catálogo Digital', 'Tienda & Moda', 'Buscador en Vivo', 'Ventas por WhatsApp', 'Yappy Panamá'],
     imageUrl: whiteCloudHero,
     gallery: [
       {
         url: whiteCloudHero,
-        title: 'Portada & Colección Esencial',
-        caption: 'Hero minimalista con estética limpia, tipografía editorial y botón de llamada a la acción hacia la colección.'
+        title: 'Portada de Colección',
+        caption: 'Portada moderna con las prendas destacadas y botón para explorar la colección.'
       },
       {
         url: whiteCloudCatalog,
-        title: 'Catálogo Principal Filtrable',
-        caption: 'Grilla de productos con filtros rápidos por categoría (Dad Hat, Snapback, Trucker, Beanie), buscador y botón de compra directa.'
+        title: 'Catálogo de Productos',
+        caption: 'Vista de productos organizada por categorías con buscador y botón de compra.'
       },
       {
         url: whiteCloudPhilosophy,
-        title: 'Sección Filosofía & Calidad',
-        caption: 'Puntos clave de valor: Forma Atemporal, Calidad de Selección y Atención Directa con entregas rápidas y pagos por Yappy.'
+        title: 'Calidad y Envíos',
+        caption: 'Detalles sobre la calidad de los materiales, envíos y métodos de pago como Yappy.'
       },
       {
         url: whiteCloudContact,
-        title: 'Contacto & Pedidos Personalizados',
-        caption: 'Módulo de contacto con canal directo a WhatsApp (+507 6289-4977), ubicación en Ciudad de Panamá y formulario rápido.'
+        title: 'Atención & Pedidos',
+        caption: 'Canal directo a WhatsApp y formulario para pedidos y atención al cliente.'
       }
     ],
     mediaType: 'image',
@@ -117,13 +117,12 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       bg: '#ffffff'
     },
     features: [
-      'Estructura de landing page de alta conversión con llamado a la acción enfocado a ventas',
-      'Catálogo dinámico interactivo con filtrado instantáneo por categoría (Dad Hat, Snapback, Trucker, Beanie)',
-      'Buscador en tiempo real por modelo o estilo sin recargar la página',
-      'Carrito de compras integrado con checkout directo hacia WhatsApp sin comisiones',
-      'Compatibilidad con pagos rápidos vía Yappy y transferencias locales en Panamá',
-      'Sección editorial de filosofía de marca y estética minimalista premium',
-      'Optimización de carga ultrarrápida con diseño adaptativo mobile-first'
+      'Catálogo visual e interactivo para mostrar productos con estilo',
+      'Filtro por categorías y buscador rápido para encontrar productos al instante',
+      'Botón de compra directa por WhatsApp para cerrar ventas de inmediato',
+      'Listo para recibir pagos rápidos por Yappy y transferencias',
+      'Sección de presentación de marca con estética moderna y limpia',
+      'Diseño 100% adaptado para verse y comprar perfecto desde celulares'
     ],
     mockupData: {
       heroTitle: 'Estilo atemporal, estructura impecable',
@@ -142,36 +141,36 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     title: 'Lic. Elena Morales Varela',
     category: 'corporate',
     categoryLabel: 'Sitio Corporativo Multi-Página',
-    clientType: 'Nutrición Clínica, Rendimiento Deportivo & Salud Metabólica',
-    tagline: 'Presencia médica digital con evidencia científica, catálogo de consultas y calculadora interactiva',
-    description: 'Sitio web corporativo multi-página desarrollado para la Lic. Elena Morales Varela, especialista en nutrición clínica y deportiva (Col. Nº 4812, Certificación ISAK Nivel 2). Cuenta con arquitectura multi-página completa: Inicio institucional con propuesta de valor médica, sección Nosotros con credenciales y trayectoria, Catálogo de Consultas y Servicios Clínicos, Módulo de Contacto & Agendamiento con integración a WhatsApp y ubicación en Providencia, y una Calculadora Nutricional interactiva en tiempo real (fórmula Mifflin-St Jeor).',
-    tags: ['Sitio Corporativo', 'Multi-Página', 'Nutrición & Salud', 'Calculadora Metabólica', 'Agendamiento WhatsApp', 'ISAK 2'],
+    clientType: 'Nutrición Clínica & Rendimiento Deportivo',
+    tagline: 'Sitio web completo para profesionales de la salud con agendamiento y herramientas útiles',
+    description: 'Sitio web completo para una especialista en nutrición clínica y deportiva. Permite a los pacientes conocer su trayectoria, consultar los tipos de atención (presencial y online), calcular sus requerimientos nutricionales y agendar citas fácilmente por WhatsApp.',
+    tags: ['Sitio Corporativo', 'Salud & Nutrición', 'Calculadora Interactiva', 'Agendamiento de Citas', 'WhatsApp'],
     imageUrl: sitioCorp1,
     gallery: [
       {
         url: sitioCorp1,
-        title: 'Inicio & Propuesta de Valor Médica',
-        caption: 'Hero institucional con propuesta de valor basada en evidencia médica, acreditaciones ISAK 2, resumen de especialidades y métricas de impacto (+1.400 pacientes y 9 años de práctica).'
+        title: 'Inicio & Presentación Médica',
+        caption: 'Página de inicio con enfoque profesional en salud, especialidades y años de experiencia.'
       },
       {
         url: sitioCorp2,
-        title: 'Nosotros & Credenciales Profesionales',
-        caption: 'Página dedicada a formación académica, filosofía clínica sin dietas punitivas, certificaciones universitarias y trayectoria profesional.'
+        title: 'Perfil Profesional & Trayectoria',
+        caption: 'Sección sobre la formación académica, certificaciones y método de atención.'
       },
       {
         url: sitioCorp3,
-        title: 'Servicios & Especialidades Clínicas',
-        caption: 'Catálogo de consultas (Nutrición Clínica, Rendimiento Físico, Salud Digestiva y Videoconsulta Online) con duración, precios y llamada directa a agendar.'
+        title: 'Servicios & Consultas',
+        caption: 'Lista de consultas presenciales y online con duración y precios detallados.'
       },
       {
         url: sitioCorp4,
-        title: 'Contacto & Agendamiento de Pacientes',
-        caption: 'Módulo integral de consulta con formulario de agendamiento, datos del consultorio en Providencia, videoconsulta online y canal directo de WhatsApp.'
+        title: 'Contacto & Citas',
+        caption: 'Formulario y botón directo a WhatsApp para agendar citas fácilmente.'
       },
       {
         url: sitioCorp5,
-        title: 'Calculadora de Requerimientos Energéticos',
-        caption: 'Herramienta interactiva para pacientes que calcula la Tasa Metabólica Basal (BMR) y gasto calórico diario según fórmula Mifflin-St Jeor con desglose de macronutrientes.'
+        title: 'Calculadora Nutricional',
+        caption: 'Herramienta interactiva para que los pacientes calculen sus calorías diarias estimadas.'
       }
     ],
     mediaType: 'image',
@@ -181,12 +180,11 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       bg: '#f7f9f8'
     },
     features: [
-      'Arquitectura multi-página estructurada (Inicio, Nosotros, Servicios, Calculadora, Contacto)',
-      'Hero corporativo con propuesta de valor médica, acreditaciones sanitarias y prueba social',
-      'Página de credenciales y trayectoria con enfoque en evidencia científica sin dietas punitivas',
-      'Catálogo de servicios y especialidades clínicas con desglose de modalidades presencial y online',
-      'Calculadora metabólica interactiva en tiempo real (fórmula Mifflin-St Jeor) como imán de leads',
-      'Sistema de agendamiento directo por formulario y botón flotante de WhatsApp activo'
+      'Estructura completa de varias páginas: Inicio, Sobre mí, Servicios y Contacto',
+      'Presentación detallada de consultas presenciales y virtuales',
+      'Calculadora nutricional interactiva que atrae y ayuda a los pacientes',
+      'Sección de trayectoria y certificaciones para generar confianza médica',
+      'Agendamiento de citas rápido y directo por WhatsApp'
     ],
     mockupData: {
       heroTitle: 'Nutrición basada en evidencia médica para transformar tu salud y rendimiento',
@@ -205,41 +203,41 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     title: 'LUMEN Studio // Boutique Fotográfica',
     category: 'premium',
     categoryLabel: 'Sitio Web Premium & Reservas Online',
-    clientType: 'Fotografía Documental, Moda Editorial & Bodas de Destino',
-    tagline: 'Sensibilidad cinematográfica, galería interactiva con metadatos EXIF y sistema de reservas online',
-    description: 'Plataforma web premium de alta fidelidad desarrollada para LUMEN Studio, atelier fotográfico boutique en Ciudad de Panamá. Integra una experiencia visual cinematográfica, galería interactiva con visor de metadatos técnicos EXIF por toma (lente, diafragma, velocidad), cotizador dinámico de paquetes por servicio, sistema interactivo de reservas paso a paso con cálculo de tarifas en tiempo real y formulario de agendamiento para visitas a su atelier de 320 m².',
-    tags: ['Sitio Premium', 'Galería Interactiva', 'Metadatos EXIF', 'Sistema de Reservas', 'Cotizador Online', 'Lujo & Moda'],
+    clientType: 'Fotografía de Bodas, Moda & Retratos',
+    tagline: 'Sitio web exclusivo para fotografía de alto nivel con galería visual y cotizador de sesiones',
+    description: 'Plataforma web elegante y visual para un estudio boutique de fotografía. Cuenta con una galería para exhibir proyectos de bodas, moda y retratos, lista de paquetes con precios claros y un sistema para cotizar y reservar sesiones de fotos de forma personalizada.',
+    tags: ['Sitio Premium', 'Estudio Fotográfico', 'Galería Visual', 'Cotizador de Sesiones', 'Reservas Online'],
     imageUrl: sitiop1,
     gallery: [
       {
         url: sitiop1,
-        title: 'Portada & Esencia Cinematográfica',
-        caption: 'Hero de alto impacto visual ("El arte de eternizar lo irrepetible") con estética editorial, presentación del atelier boutique y navegación fluida.'
+        title: 'Portada & Estilo Visual',
+        caption: 'Portada visual y elegante que presenta el estilo artístico del estudio fotográfico.'
       },
       {
         url: sitiop2,
-        title: 'Galería Interactiva & Visor de Metadatos EXIF',
-        caption: 'Portafolio filtrable por categorías (bodas, moda, retratos, arquitectura) con visor técnico que detalla lente, diafragma y velocidad de obturación.'
+        title: 'Galería de Proyectos',
+        caption: 'Portafolio organizado por categorías como bodas, retratos y moda.'
       },
       {
         url: sitiop3,
-        title: 'Catálogo de Servicios & Tarifario Transparente',
-        caption: 'Desglose detallado de experiencias fotográficas (Bodas de Destino, Campañas Comerciales, Retratos) con entregas, especificaciones y precios claros.'
+        title: 'Paquetes & Precios',
+        caption: 'Detalle de cada tipo de sesión fotográfica con entregas y precios claros.'
       },
       {
         url: sitiop4,
-        title: 'Sistema de Reservas & Configuración de Sesión',
-        caption: 'Módulo interactivo paso a paso para seleccionar tipo de producción, cotizar servicios adicionales y asegurar fecha de rodaje o sesión.'
+        title: 'Cotizador & Reservas',
+        caption: 'Paso a paso interactivo para elegir la sesión deseada y cotizar la fecha.'
       },
       {
         url: sitiop5,
-        title: 'El Atelier & Los Maestros del Lente (Estudio)',
-        caption: 'Presentación del estudio de 320 m² en Ciudad de Panamá con ciclorama sinfín, luz cenital y sala de etalonaje, respaldado por más de 12 años de trayectoria.'
+        title: 'El Estudio & El Equipo',
+        caption: 'Presentación de las instalaciones del estudio en Ciudad de Panamá y su equipo.'
       },
       {
         url: sitiop6,
-        title: 'Contacto Profesional & Agendamiento de Visitas',
-        caption: 'Formulario segmentado para solicitudes de producción, canales directos de WhatsApp y correo, horarios de atención y mapa de ubicación.'
+        title: 'Contacto & Agendamiento',
+        caption: 'Formulario para cotizaciones especiales y enlace directo a WhatsApp.'
       }
     ],
     mediaType: 'image',
@@ -249,12 +247,12 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       bg: '#08080a'
     },
     features: [
-      'Diseño editorial cinematográfico con microinteracciones y transiciones fluidas',
-      'Galería interactiva con filtros por rubro y visor de metadatos técnicos EXIF',
-      'Catálogo transparente de servicios y producciones comerciales de alta gama',
-      'Sistema interactivo de reservas y configuración de experiencias fotográficas',
-      'Página dedicada al atelier físico (320 m², ciclorama, sala de etalonaje) y equipo',
-      'Integración directa con WhatsApp, formulario de contacto y mapa interactivo'
+      'Diseño elegante y visual que hace resaltar cada fotografía',
+      'Galería organizada por categorías: bodas, moda, retratos y eventos',
+      'Detalle de paquetes y servicios con tarifas claras',
+      'Sistema interactivo para cotizar y agendar sesiones fotográficas',
+      'Página para presentar las instalaciones del estudio y el equipo de trabajo',
+      'Ubicación del estudio e integración directa con WhatsApp'
     ],
     mockupData: {
       heroTitle: 'El arte de eternizar lo irrepetible',
