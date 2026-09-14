@@ -13,8 +13,10 @@ export const Footer: React.FC<FooterProps> = () => {
 
   const navLinks = [
     { name: 'Inicio', href: '#inicio' },
-    { name: 'Servicios & Planes', href: '#planes' },
+    { name: '¿Quiénes Somos?', href: '#sobre-mi' },
+    { name: 'Proceso', href: '#proceso' },
     { name: 'Portafolio', href: '#portafolio' },
+    { name: 'Servicios & Planes', href: '#planes' },
     { name: 'Contacto', href: '#contacto' }
   ];
 

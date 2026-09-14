@@ -25,7 +25,7 @@ export const Process: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-[#0A0A0B] border-b border-white/10 relative">
+    <section id="proceso" className="py-20 bg-[#0A0A0B] border-b border-white/10 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="max-w-3xl mx-auto text-center mb-16">

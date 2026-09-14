@@ -32,10 +32,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onQuoteClick }) => {
 
   const navLinks = [
     { name: 'Inicio', href: '#inicio' },
-    { name: '¿Por qué nosotros?', href: '#sobre-mi' },
-    { name: 'Servicios & Precios', href: '#planes' },
-    { name: 'Mantenimiento', href: '#mantenimiento' },
-    { name: 'Portafolio', href: '#portafolio' }
+    { name: '¿Quiénes somos?', href: '#sobre-mi' },
+    { name: 'Proceso', href: '#proceso' },
+    { name: 'Portafolio', href: '#portafolio' },
+    { name: 'Precios', href: '#planes' },
+    { name: 'Mantenimiento', href: '#mantenimiento' }
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {

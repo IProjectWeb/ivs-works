@@ -45,34 +45,34 @@ export default function App() {
 
       {/* Main Content Sections */}
       <main className="flex-grow">
-        {/* 1. Hero Section */}
+        {/* 1. Hero Section (gancho) */}
         <Hero
           onQuoteClick={() => scrollToSection('contacto')}
           onPortfolioClick={() => scrollToSection('portafolio')}
         />
 
-        {/* 2. About Me / Value Proposition */}
+        {/* 2. Quiénes somos (confianza) */}
         <About onQuoteClick={() => scrollToSection('contacto')} />
 
-        {/* 3. Pricing & Plans */}
-        <Pricing onSelectPlan={handleSelectPlan} />
-
-        {/* 4. Maintenance & Support */}
-        <Maintenance onSelectMaintenance={handleSelectPlan} />
-
-        {/* 4.5 Quick Services / Mini Sites */}
-        <QuickServices onSelectService={handleSelectPlan} />
-
-        {/* 5. Portfolio / Recent Works */}
-        <Portfolio onQuoteProject={handleQuoteProject} />
-
-        {/* 6. Work Process Workflow */}
+        {/* 3. Proceso (reduce incertidumbre) */}
         <Process />
 
-        {/* 7. Frequently Asked Questions */}
+        {/* 4. Portafolio (prueba) */}
+        <Portfolio onQuoteProject={handleQuoteProject} />
+
+        {/* 5. Precios & Planes (ahora sí, informado) */}
+        <Pricing onSelectPlan={handleSelectPlan} />
+
+        {/* 6. Mini Sitios / Soluciones Puntuales (alternativa) */}
+        <QuickServices onSelectService={handleSelectPlan} />
+
+        {/* 7. Mantenimiento & Soporte (qué sigue después) */}
+        <Maintenance onSelectMaintenance={handleSelectPlan} />
+
+        {/* 8. Frequently Asked Questions (últimas dudas) */}
         <FAQ />
 
-        {/* 8. Contact & Quotation Form */}
+        {/* 9. Contact & Quotation Form (acción) */}
         <Contact
           selectedPlan={selectedPlan}
           customNotes={customNotes}
