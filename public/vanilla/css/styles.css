@@ -412,6 +412,7 @@ img {
   text-align: center;
   position: relative;
   overflow: hidden;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 @media (min-width: 1024px) {
