@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Target, Zap, MapPin } from 'lucide-react';
+import { Target, Zap, MapPin } from 'lucide-react';
 
 interface AboutProps {
   onQuoteClick?: () => void;
@@ -10,12 +10,6 @@ export const About: React.FC<AboutProps> = () => {
     <section id="sobre-mi" className="py-20 lg:py-28 bg-[#0A0A0B] border-b border-white/10 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 font-jakarta text-xs font-bold uppercase tracking-[0.16em] text-cyan-400 bg-cyan-500/10 border border-cyan-500/25 px-4 py-1.5 mb-6">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Sobre Nosotros</span>
-        </div>
-
         {/* Title */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-outfit font-extrabold uppercase tracking-tight text-white mb-8">
           ¿Quiénes Somos?
