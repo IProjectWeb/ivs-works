@@ -1,5 +1,4 @@
 import React from 'react';
-import { Target, Zap, MapPin } from 'lucide-react';
 
 interface AboutProps {
   onQuoteClick?: () => void;
@@ -9,7 +8,7 @@ export const About: React.FC<AboutProps> = () => {
   return (
     <section id="sobre-mi" className="py-20 lg:py-28 bg-[#0A0A0B] border-b border-white/10 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        
+
         {/* Title */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-outfit font-extrabold uppercase tracking-tight text-white mb-8">
           ¿Quiénes Somos?
@@ -28,48 +27,33 @@ export const About: React.FC<AboutProps> = () => {
           </p>
         </div>
 
-        {/* 3 Trust Badges */}
+        {/* 3 Core Values (Text only) */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto text-left">
-          <div className="bg-[#111114] border border-white/10 p-4 flex items-center gap-3.5 hover:border-cyan-400/40 transition-colors">
-            <div className="w-9 h-9 bg-[#16161A] border border-white/10 flex items-center justify-center shrink-0">
-              <Target className="w-4 h-4 text-cyan-400" />
-            </div>
-            <div>
-              <strong className="block text-xs font-outfit font-bold uppercase text-white tracking-wide">
-                Presencia Digital Real
-              </strong>
-              <span className="block text-[11px] font-jakarta text-neutral-400">
-                Para todo tipo de negocio
-              </span>
-            </div>
+          <div className="bg-[#111114] border border-white/10 p-5 hover:border-cyan-400/40 transition-colors">
+            <strong className="block text-xs sm:text-sm font-outfit font-bold uppercase text-white tracking-wide mb-1.5">
+              PRESENCIA DIGITAL REAL
+            </strong>
+            <span className="block text-xs font-jakarta text-neutral-400 leading-relaxed">
+              Para todo tipo y tamaño de negocio
+            </span>
           </div>
 
-          <div className="bg-[#111114] border border-white/10 p-4 flex items-center gap-3.5 hover:border-cyan-400/40 transition-colors">
-            <div className="w-9 h-9 bg-[#16161A] border border-white/10 flex items-center justify-center shrink-0">
-              <Zap className="w-4 h-4 text-cyan-400" />
-            </div>
-            <div>
-              <strong className="block text-xs font-outfit font-bold uppercase text-white tracking-wide">
-                Sin Complejidad
-              </strong>
-              <span className="block text-[11px] font-jakarta text-neutral-400">
-                Directo y sin costos inflados
-              </span>
-            </div>
+          <div className="bg-[#111114] border border-white/10 p-5 hover:border-cyan-400/40 transition-colors">
+            <strong className="block text-xs sm:text-sm font-outfit font-bold uppercase text-white tracking-wide mb-1.5">
+              CALIDAD SIN COMPLEJIDAD
+            </strong>
+            <span className="block text-xs font-jakarta text-neutral-400 leading-relaxed">
+              Directo y sin costos de agencia grande
+            </span>
           </div>
 
-          <div className="bg-[#111114] border border-white/10 p-4 flex items-center gap-3.5 hover:border-cyan-400/40 transition-colors">
-            <div className="w-9 h-9 bg-[#16161A] border border-white/10 flex items-center justify-center shrink-0">
-              <MapPin className="w-4 h-4 text-cyan-400" />
-            </div>
-            <div>
-              <strong className="block text-xs font-outfit font-bold uppercase text-white tracking-wide">
-                Hecho en Panamá
-              </strong>
-              <span className="block text-[11px] font-jakarta text-neutral-400">
-                Para captar más clientes
-              </span>
-            </div>
+          <div className="bg-[#111114] border border-white/10 p-5 hover:border-cyan-400/40 transition-colors">
+            <strong className="block text-xs sm:text-sm font-outfit font-bold uppercase text-white tracking-wide mb-1.5">
+              HECHO EN PANAMÁ
+            </strong>
+            <span className="block text-xs font-jakarta text-neutral-400 leading-relaxed">
+              Pensado para captar más clientes
+            </span>
           </div>
         </div>
 
