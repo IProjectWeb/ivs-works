@@ -35,7 +35,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onQuoteClick }) => {
     { name: '¿Quiénes somos?', href: '#sobre-mi' },
     { name: 'Proceso', href: '#proceso' },
     { name: 'Portafolio', href: '#portafolio' },
-    { name: 'Precios', href: '#planes' },
+    { name: 'Servicios', href: '#planes' },
     { name: 'Mantenimiento', href: '#mantenimiento' }
   ];
 
