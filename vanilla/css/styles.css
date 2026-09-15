@@ -181,8 +181,24 @@ img {
   filter: blur(120px);
   pointer-events: none;
   z-index: 0;
-  opacity: 0.12;
+  opacity: 0.10;
   background: var(--accent-cyan);
+  animation: pulseGlow 18s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.07;
+  }
+  50% {
+    transform: scale(1.05) translate(8px, -6px);
+    opacity: 0.11;
+  }
+  100% {
+    transform: scale(0.98) translate(-6px, 5px);
+    opacity: 0.08;
+  }
 }
 
 /* ==========================================================================
@@ -431,11 +447,23 @@ img {
   }
 }
 
+@keyframes heroFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .hero-indicator {
   width: 4rem;
   height: 4px;
   background: var(--accent-cyan);
   margin: 0 auto 2rem auto;
+  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
 }
 
 .hero-title {
@@ -446,6 +474,7 @@ img {
   color: var(--text-primary);
   max-width: 58rem;
   margin: 0 auto 1.5rem auto;
+  animation: heroFadeInUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
 }
 
 @media (min-width: 640px) {
@@ -475,6 +504,7 @@ img {
   max-width: 42rem;
   margin: 0 auto 2.5rem auto;
   line-height: 1.7;
+  animation: heroFadeInUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both;
 }
 
 @media (min-width: 640px) {
@@ -489,6 +519,7 @@ img {
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  animation: heroFadeInUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.32s both;
 }
 
 @media (min-width: 640px) {
@@ -2463,4 +2494,90 @@ textarea.form-control {
   background: #33ebff;
   box-shadow: 0 6px 20px rgba(0, 229, 255, 0.5);
   transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Subtle Scroll Reveal & Interactive Micro-Animations
+   ========================================================================== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enhanced Micro-Interactions (Soft & Refined) */
+.pricing-card {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 18px rgba(34, 211, 238, 0.06);
+}
+
+.process-card {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease;
+}
+
+.process-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.28);
+}
+
+.project-card {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.3);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 16px rgba(34, 211, 238, 0.04);
+}
+
+.project-image-wrap img {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card:hover .project-image-wrap img {
+  transform: scale(1.015);
+}
+
+.mini-service-card {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease;
+}
+
+.mini-service-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.28);
+}
+
+.maintenance-card {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease;
+}
+
+.maintenance-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.28);
+}
+
+/* Reduced Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

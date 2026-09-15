@@ -196,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initFloatingWhatsApp();
   initSmoothScroll();
+  initScrollReveal();
 });
 
 /* ==========================================================================
@@ -896,5 +897,48 @@ function initFloatingWhatsApp() {
         event_label: 'floating_button'
       });
     }
+  });
+}
+
+/* ==========================================================================
+   7. Subtle Scroll Reveal Animations
+   ========================================================================== */
+function initScrollReveal() {
+  const elements = document.querySelectorAll(
+    '.section-header, .about-content-text, .about-value-pill, .process-card, .project-card, .pricing-card, .mini-service-card, .maintenance-card, .faq-item, .contact-card'
+  );
+
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.08,
+    rootMargin: '0px 0px -30px 0px'
+  });
+
+  elements.forEach(el => {
+    el.classList.add('reveal-on-scroll');
+    const parent = el.parentElement;
+    if (parent) {
+      if (parent.classList.contains('process-grid') || 
+          parent.classList.contains('pricing-grid') || 
+          parent.classList.contains('about-values-grid') || 
+          parent.classList.contains('mini-services-grid') || 
+          parent.classList.contains('maintenance-grid') ||
+          parent.id === 'portfolio-grid') {
+        const childIndex = Array.from(parent.children).indexOf(el);
+        el.style.transitionDelay = `${(childIndex % 4) * 0.06}s`;
+      }
+    }
+    observer.observe(el);
   });
 }
