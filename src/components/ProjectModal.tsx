@@ -37,7 +37,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         onClick={onClose}
       >
         <div
-          className="relative w-full max-w-4xl bg-[#111114] border border-white/10 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+          className="relative w-full max-w-5xl lg:max-w-6xl bg-[#111114] border border-white/10 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Modal Header */}
