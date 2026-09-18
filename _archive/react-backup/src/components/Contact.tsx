@@ -185,7 +185,7 @@ Mensaje: ${formData.message}`;
 
                 {/* Email */}
                 <a
-                  href="mailto:isaacvergara1703@gmail.com"
+                  href="mailto:ivsworks@hotmail.com"
                   className="group flex items-start gap-4 p-4 bg-[#0A0A0B] border border-white/10 hover:border-cyan-400/40 transition-colors"
                 >
                   <div className="w-10 h-10 bg-[#16161A] border border-white/10 flex items-center justify-center text-cyan-400 shrink-0 group-hover:scale-105 transition-transform">
@@ -196,7 +196,7 @@ Mensaje: ${formData.message}`;
                       Correo Electrónico
                     </div>
                     <div className="text-base font-outfit font-bold text-white group-hover:text-cyan-400 transition-colors truncate max-w-[220px] sm:max-w-none">
-                      isaacvergara1703@gmail.com
+                      ivsworks@hotmail.com
                     </div>
                   </div>
                 </a>

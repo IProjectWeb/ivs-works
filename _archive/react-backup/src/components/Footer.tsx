@@ -99,10 +99,10 @@ export const Footer: React.FC<FooterProps> = () => {
               </li>
               <li>
                 <a
-                  href="mailto:isaacvergara1703@gmail.com"
-                  className="hover:text-cyan-400 transition-colors inline-block"
+                  href="mailto:ivsworks@hotmail.com"
+                  className="text-zinc-400 hover:text-white transition-colors"
                 >
-                  isaacvergara1703@gmail.com
+                  ivsworks@hotmail.com
                 </a>
               </li>
             </ul>

@@ -827,6 +827,21 @@ function initContactForm() {
         return;
       }
 
+      const subject = encodeURIComponent(`Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`);
+      let bodyText = `Hola Isaac,\n\nDeseo cotizar un proyecto web con los siguientes datos:\n\n`;
+      bodyText += `• Nombre: ${data.name}\n`;
+      bodyText += `• Teléfono / WhatsApp: ${data.phone || 'No indicado'}\n`;
+      bodyText += `• Correo Electrónico: ${data.email}\n`;
+      if (data.business) bodyText += `• Giro o tipo de negocio: ${data.business}\n`;
+      bodyText += `• Plan de interés: ${planLabels[data.plan] || data.plan}\n`;
+      bodyText += `• Plazo deseado: ${data.urgency}\n`;
+      if (data.message) {
+        bodyText += `\n• Mensaje / Detalles del proyecto:\n${data.message}\n`;
+      }
+      bodyText += `\n---\nEnviado desde el formulario oficial de ivsworks.com`;
+
+      const mailtoUrl = `mailto:ivsworks@hotmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+      window.open(mailtoUrl, '_blank');
       showSuccess(data);
     });
   }
