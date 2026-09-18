@@ -14,25 +14,25 @@ const PORTFOLIO_DATA = [
     tagline: 'Presencia profesional para generar confianza y captar clientes directamente por WhatsApp',
     description: 'Página web diseñada para una firma de asesoría financiera y contable. Presenta sus servicios con claridad, transmite seriedad ante empresas y clientes, e incluye botones directos para solicitar cotizaciones por WhatsApp.',
     tags: ['Landing Page', 'Consultoría & Finanzas', 'Cotizador Online', 'Captación de Clientes', 'WhatsApp'],
-    imageUrl: './assets/images/vv-consulting-hero.png',
+    imageUrl: 'assets/images/vv-consulting-hero.png',
     gallery: [
       {
-        url: './assets/images/vv-consulting-hero.png',
+        url: 'assets/images/vv-consulting-hero.png',
         title: 'Portada Principal',
         caption: 'Página principal con mensaje claro de bienvenida, datos de experiencia y botón de contacto directo.'
       },
       {
-        url: './assets/images/vv-consulting-nosotros.png',
+        url: 'assets/images/vv-consulting-nosotros.png',
         title: 'Sobre la Firma',
         caption: 'Sección informativa sobre la trayectoria de la firma y el equipo de profesionales.'
       },
       {
-        url: './assets/images/vv-consulting-servicios.png',
+        url: 'assets/images/vv-consulting-servicios.png',
         title: 'Servicios & Cotización',
         caption: 'Catálogo de servicios de auditoría y contabilidad con opción para solicitar cotización.'
       },
       {
-        url: './assets/images/vv-consulting-contacto.png',
+        url: 'assets/images/vv-consulting-contacto.png',
         title: 'Contacto & Consultas',
         caption: 'Ubicación, horarios y formulario para recibir consultas de clientes interesados.'
       }
@@ -56,25 +56,25 @@ const PORTFOLIO_DATA = [
     tagline: 'Catálogo visual moderno y pedidos rápidos directo a WhatsApp y Yappy',
     description: 'Página web y catálogo interactivo para una marca de gorras y moda urbana. Permite a los clientes explorar productos por categoría, buscar modelos al instante y hacer pedidos directamente por WhatsApp sin complicaciones ni comisiones.',
     tags: ['Catálogo Digital', 'Tienda & Moda', 'Buscador en Vivo', 'Ventas por WhatsApp', 'Yappy Panamá'],
-    imageUrl: './assets/images/wc-hero.png',
+    imageUrl: 'assets/images/wc-hero.png',
     gallery: [
       {
-        url: './assets/images/wc-hero.png',
+        url: 'assets/images/wc-hero.png',
         title: 'Portada de Colección',
         caption: 'Portada moderna con las prendas destacadas y botón para explorar la colección.'
       },
       {
-        url: './assets/images/wc-catalog.png',
+        url: 'assets/images/wc-catalog.png',
         title: 'Catálogo de Productos',
         caption: 'Vista de productos organizada por categorías con buscador y botón de compra.'
       },
       {
-        url: './assets/images/wc-philosophy.png',
+        url: 'assets/images/wc-philosophy.png',
         title: 'Calidad y Envíos',
         caption: 'Detalles sobre la calidad de los materiales, envíos y métodos de pago como Yappy.'
       },
       {
-        url: './assets/images/wc-contact.png',
+        url: 'assets/images/wc-contact.png',
         title: 'Atención & Pedidos',
         caption: 'Canal directo a WhatsApp y formulario para pedidos y atención al cliente.'
       }
@@ -98,31 +98,31 @@ const PORTFOLIO_DATA = [
     tagline: 'Sitio web completo para profesionales de la salud con agendamiento y herramientas útiles',
     description: 'Sitio web completo para una especialista en nutrición clínica y deportiva. Permite a los pacientes conocer su trayectoria, consultar los tipos de atención (presencial y online), calcular sus requerimientos nutricionales y agendar citas fácilmente por WhatsApp.',
     tags: ['Sitio Corporativo', 'Salud & Nutrición', 'Calculadora Interactiva', 'Agendamiento de Citas', 'WhatsApp'],
-    imageUrl: './assets/images/SitioCorporativo1.png',
+    imageUrl: 'assets/images/SitioCorporativo1.png',
     planId: 'intermedio',
     gallery: [
       {
-        url: './assets/images/SitioCorporativo1.png',
+        url: 'assets/images/SitioCorporativo1.png',
         title: 'Inicio & Presentación Médica',
         caption: 'Página de inicio con enfoque profesional en salud, especialidades y años de experiencia.'
       },
       {
-        url: './assets/images/SitioCorporativo2.png',
+        url: 'assets/images/SitioCorporativo2.png',
         title: 'Perfil Profesional & Trayectoria',
         caption: 'Sección sobre la formación académica, certificaciones y método de atención.'
       },
       {
-        url: './assets/images/SitioCorporativo3.png',
+        url: 'assets/images/SitioCorporativo3.png',
         title: 'Servicios & Consultas',
         caption: 'Lista de consultas presenciales y online con duración y precios detallados.'
       },
       {
-        url: './assets/images/SitioCorporativo4.png',
+        url: 'assets/images/SitioCorporativo4.png',
         title: 'Contacto & Citas',
         caption: 'Formulario y botón directo a WhatsApp para agendar citas fácilmente.'
       },
       {
-        url: './assets/images/SitioCorporativo5.png',
+        url: 'assets/images/SitioCorporativo5.png',
         title: 'Calculadora Nutricional',
         caption: 'Herramienta interactiva para que los pacientes calculen sus calorías diarias estimadas.'
       }
@@ -144,35 +144,35 @@ const PORTFOLIO_DATA = [
     tagline: 'Sitio web exclusivo para fotografía de alto nivel con galería visual y cotizador de sesiones',
     description: 'Plataforma web elegante y visual para un estudio boutique de fotografía. Cuenta con una galería para exhibir proyectos de bodas, moda y retratos, lista de paquetes con precios claros y un sistema para cotizar y reservar sesiones de fotos de forma personalizada.',
     tags: ['Sitio Premium', 'Estudio Fotográfico', 'Galería Visual', 'Cotizador de Sesiones', 'Reservas Online'],
-    imageUrl: './assets/images/sitiop1.png',
+    imageUrl: 'assets/images/sitiop1.png',
     gallery: [
       {
-        url: './assets/images/sitiop1.png',
+        url: 'assets/images/sitiop1.png',
         title: 'Portada & Estilo Visual',
         caption: 'Portada visual y elegante que presenta el estilo artístico del estudio fotográfico.'
       },
       {
-        url: './assets/images/sitiop2.png',
+        url: 'assets/images/sitiop2.png',
         title: 'Galería de Proyectos',
         caption: 'Portafolio organizado por categorías como bodas, retratos y moda.'
       },
       {
-        url: './assets/images/sitiop3.png',
+        url: 'assets/images/sitiop3.png',
         title: 'Paquetes & Precios',
         caption: 'Detalle de cada tipo de sesión fotográfica con entregas y precios claros.'
       },
       {
-        url: './assets/images/sitiop4.png',
+        url: 'assets/images/sitiop4.png',
         title: 'Cotizador & Reservas',
         caption: 'Paso a paso interactivo para elegir la sesión deseada y cotizar la fecha.'
       },
       {
-        url: './assets/images/sitiop5.png',
+        url: 'assets/images/sitiop5.png',
         title: 'El Estudio & El Equipo',
         caption: 'Presentación de las instalaciones del estudio en Ciudad de Panamá y su equipo.'
       },
       {
-        url: './assets/images/sitiop6.png',
+        url: 'assets/images/sitiop6.png',
         title: 'Contacto & Agendamiento',
         caption: 'Formulario para cotizaciones especiales y enlace directo a WhatsApp.'
       }
