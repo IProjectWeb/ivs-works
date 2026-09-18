@@ -847,6 +847,10 @@ function initContactForm() {
       btn.disabled = true;
     }
 
+    if (window.location.protocol === 'file:') {
+      alert('Estás abriendo el archivo localmente desde tu disco duro (file://). Los envíos automáticos de correo requieren probar en tu web online: https://ivsworks.com/#contacto');
+    }
+
     try {
       const response = await fetch('https://formsubmit.co/ajax/ivsworks@hotmail.com', {
         method: 'POST',
@@ -873,11 +877,25 @@ function initContactForm() {
       if (response.ok && (resJson.success === "true" || resJson.success === true)) {
         showSuccess(data);
       } else {
-        throw new Error(resJson.message || 'Submission failed');
+        const errorMsg = resJson.message || 'No se pudo procesar el envío automático.';
+        alert(`Aviso: ${errorMsg}\n\nAbriendo tu aplicación de correo para enviar la cotización...`);
+        const subject = encodeURIComponent(`Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`);
+        let bodyText = `Hola Isaac,\n\nDeseo cotizar un proyecto web con los siguientes datos:\n\n`;
+        bodyText += `• Nombre: ${data.name}\n`;
+        bodyText += `• Teléfono / WhatsApp: ${data.phone || 'No indicado'}\n`;
+        bodyText += `• Correo Electrónico: ${data.email}\n`;
+        if (data.business) bodyText += `• Giro o tipo de negocio: ${data.business}\n`;
+        bodyText += `• Plan de interés: ${planLabels[data.plan] || data.plan}\n`;
+        bodyText += `• Plazo deseado: ${data.urgency}\n`;
+        if (data.message) {
+          bodyText += `\n• Mensaje / Detalles del proyecto:\n${data.message}\n`;
+        }
+        bodyText += `\n---\nEnviado desde el formulario oficial de ivsworks.com`;
+        window.location.href = `mailto:ivsworks@hotmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
       }
     } catch (err) {
-      console.warn('FormSubmit AJAX fallback to mailto:', err);
-      // Fallback to mailto so no lead is ever lost
+      console.warn('FormSubmit AJAX error:', err);
+      alert('Hubo un inconveniente de conexión con el servidor. Se abrirá tu correo predeterminado para enviar la solicitud.');
       const subject = encodeURIComponent(`Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`);
       let bodyText = `Hola Isaac,\n\nDeseo cotizar un proyecto web con los siguientes datos:\n\n`;
       bodyText += `• Nombre: ${data.name}\n`;
@@ -890,10 +908,7 @@ function initContactForm() {
         bodyText += `\n• Mensaje / Detalles del proyecto:\n${data.message}\n`;
       }
       bodyText += `\n---\nEnviado desde el formulario oficial de ivsworks.com`;
-
-      const mailtoUrl = `mailto:ivsworks@hotmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
-      window.open(mailtoUrl, '_blank');
-      showSuccess(data);
+      window.location.href = `mailto:ivsworks@hotmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
     } finally {
       if (btn) {
         btn.innerHTML = originalContent;
