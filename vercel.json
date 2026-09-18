@@ -1,0 +1,17 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ivsworks.com"
+        }
+      ],
+      "destination": "https://ivsworks.com/:path*",
+      "permanent": true
+    }
+  ]
+}

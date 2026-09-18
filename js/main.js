@@ -824,6 +824,90 @@ function initContactForm() {
     });
   }
 
+  async function sendViaEmailJS(data) {
+    const templateParams = {
+      // Destination variables
+      to_email: 'ivsworks@hotmail.com',
+      to_name: 'Isaac Vergara - IVS WORKS',
+      recipient: 'ivsworks@hotmail.com',
+      
+      // Client info variables (aliases to support any template syntax)
+      name: data.name,
+      from_name: data.name,
+      user_name: data.name,
+      client_name: data.name,
+      
+      email: data.email,
+      from_email: data.email,
+      user_email: data.email,
+      client_email: data.email,
+      reply_to: data.email,
+      
+      phone: data.phone || 'No especificado',
+      whatsapp: data.phone || 'No especificado',
+      telefono: data.phone || 'No especificado',
+      
+      business: data.business || 'No especificado',
+      business_type: data.business || 'No especificado',
+      negocio: data.business || 'No especificado',
+      
+      plan: planLabels[data.plan] || data.plan,
+      plan_name: planLabels[data.plan] || data.plan,
+      
+      urgency: data.urgency,
+      plazo: data.urgency,
+      
+      message: data.message || 'Sin mensaje adicional',
+      mensaje: data.message || 'Sin mensaje adicional',
+      
+      subject: `Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`,
+      asunto: `Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`,
+      
+      date: new Date().toLocaleString('es-PA')
+    };
+
+    // 1. Try via EmailJS SDK if available on window
+    if (window.emailjs && typeof window.emailjs.send === 'function') {
+      try {
+        if (typeof window.emailjs.init === 'function') {
+          window.emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
+        }
+        const res = await window.emailjs.send(
+          EMAILJS_CONFIG.serviceId,
+          EMAILJS_CONFIG.templateId,
+          templateParams,
+          { publicKey: EMAILJS_CONFIG.publicKey }
+        );
+        if (res && (res.status === 200 || res.text === 'OK')) {
+          return { success: true, method: 'sdk' };
+        }
+      } catch (sdkErr) {
+        console.warn('EmailJS SDK attempt failed, attempting direct fetch API fallback:', sdkErr);
+      }
+    }
+
+    // 2. Direct HTTP Fetch to EmailJS API (works reliably even if CDN script was blocked)
+    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        service_id: EMAILJS_CONFIG.serviceId,
+        template_id: EMAILJS_CONFIG.templateId,
+        user_id: EMAILJS_CONFIG.publicKey,
+        template_params: templateParams
+      })
+    });
+
+    if (response.ok) {
+      return { success: true, method: 'direct_api' };
+    }
+
+    const errText = await response.text();
+    throw new Error(errText || `Error HTTP ${response.status} en EmailJS`);
+  }
+
   async function handleDirectEmailSubmit() {
     const data = getFormData();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -854,28 +938,42 @@ function initContactForm() {
       btn.disabled = true;
     }
 
-    // 1. Send via EmailJS (Connected directly to Hotmail/Outlook)
-    if (window.emailjs && EMAILJS_CONFIG.publicKey && EMAILJS_CONFIG.publicKey !== 'YOUR_PUBLIC_KEY') {
-      try {
-        emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
-        const templateParams = {
-          name: data.name,
-          from_name: data.name,
-          user_name: data.name,
-          phone: data.phone || 'No especificado',
-          whatsapp: data.phone || 'No especificado',
-          email: data.email,
-          user_email: data.email,
-          from_email: data.email,
-          reply_to: data.email,
-          business: data.business || 'No especificado',
-          plan: planLabels[data.plan] || data.plan,
-          urgency: data.urgency,
-          message: data.message || 'Sin mensaje adicional'
-        };
+    let isSent = false;
 
-        const res = await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, templateParams);
-        console.log('EmailJS Success:', res);
+    // 1. Primary: Serverless Backend (/api/contact)
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ...data,
+          planLabel: planLabels[data.plan] || data.plan
+        })
+      });
+
+      if (response.ok) {
+        const json = await response.json();
+        if (json.success) {
+          isSent = true;
+          showSuccess(data);
+          if (btn) {
+            btn.innerHTML = originalContent;
+            btn.disabled = false;
+          }
+          return;
+        }
+      }
+    } catch (backendErr) {
+      console.warn('Backend /api/contact not available, trying client fallback:', backendErr);
+    }
+
+    // 2. Secondary: Direct EmailJS transport
+    if (!isSent) {
+      try {
+        await sendViaEmailJS(data);
+        isSent = true;
         showSuccess(data);
         if (btn) {
           btn.innerHTML = originalContent;
@@ -883,45 +981,23 @@ function initContactForm() {
         }
         return;
       } catch (emailJsErr) {
-        console.error('EmailJS Error:', emailJsErr);
-        alert('Hubo un inconveniente al enviar por EmailJS: ' + (emailJsErr.text || emailJsErr.message || JSON.stringify(emailJsErr)));
-      } finally {
-        if (btn) {
-          btn.innerHTML = originalContent;
-          btn.disabled = false;
-        }
+        console.error('Email delivery error:', emailJsErr);
       }
     }
 
-    // 2. Direct FormSubmit / Mailto fallback
-    try {
-      const response = await fetch('https://formsubmit.co/ajax/ivsworks@hotmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: `Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`,
-          _template: 'table',
-          _captcha: 'false',
-          Nombre: data.name,
-          WhatsApp_Telefono: data.phone || 'No especificado',
-          Correo_Del_Cliente: data.email,
-          Giro_o_Negocio: data.business || 'No especificado',
-          Plan_de_Interes: planLabels[data.plan] || data.plan,
-          Plazo_Estimado: data.urgency,
-          Mensaje_Detalles: data.message || 'Sin mensaje adicional'
-        })
-      });
-
-      const resJson = await response.json();
-
-      if (response.ok && (resJson.success === "true" || resJson.success === true)) {
+    // 3. Fallback: Offer WhatsApp or mailto
+    if (!isSent) {
+      const confirmWA = confirm(
+        'El servicio de correo presentó un inconveniente temporal.\n\n¿Deseas enviar tu cotización directamente por WhatsApp para recibir atención inmediata?'
+      );
+      
+      if (confirmWA) {
+        const text = formatWhatsAppText(data);
+        const encoded = encodeURIComponent(text);
+        const waUrl = `https://wa.me/50762125245?text=${encoded}`;
+        window.open(waUrl, '_blank');
         showSuccess(data);
       } else {
-        const errorMsg = resJson.message || 'No se pudo procesar el envío automático.';
-        alert(`Aviso: ${errorMsg}\n\nAbriendo tu aplicación de correo para enviar la cotización...`);
         const subject = encodeURIComponent(`Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`);
         let bodyText = `Hola Isaac,\n\nDeseo cotizar un proyecto web con los siguientes datos:\n\n`;
         bodyText += `• Nombre: ${data.name}\n`;
@@ -936,27 +1012,11 @@ function initContactForm() {
         bodyText += `\n---\nEnviado desde el formulario oficial de ivsworks.com`;
         window.location.href = `mailto:ivsworks@hotmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
       }
-    } catch (err) {
-      console.warn('FormSubmit AJAX error:', err);
-      alert('Hubo un inconveniente de conexión con el servidor. Se abrirá tu correo predeterminado para enviar la solicitud.');
-      const subject = encodeURIComponent(`Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`);
-      let bodyText = `Hola Isaac,\n\nDeseo cotizar un proyecto web con los siguientes datos:\n\n`;
-      bodyText += `• Nombre: ${data.name}\n`;
-      bodyText += `• Teléfono / WhatsApp: ${data.phone || 'No indicado'}\n`;
-      bodyText += `• Correo Electrónico: ${data.email}\n`;
-      if (data.business) bodyText += `• Giro o tipo de negocio: ${data.business}\n`;
-      bodyText += `• Plan de interés: ${planLabels[data.plan] || data.plan}\n`;
-      bodyText += `• Plazo deseado: ${data.urgency}\n`;
-      if (data.message) {
-        bodyText += `\n• Mensaje / Detalles del proyecto:\n${data.message}\n`;
-      }
-      bodyText += `\n---\nEnviado desde el formulario oficial de ivsworks.com`;
-      window.location.href = `mailto:ivsworks@hotmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
-    } finally {
-      if (btn) {
-        btn.innerHTML = originalContent;
-        btn.disabled = false;
-      }
+    }
+
+    if (btn) {
+      btn.innerHTML = originalContent;
+      btn.disabled = false;
     }
   }
 
