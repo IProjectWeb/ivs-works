@@ -322,7 +322,7 @@ function initPortfolio() {
 
       card.innerHTML = `
         <div class="project-image-wrap" title="Haz clic para ver el caso completo">
-          <img src="${project.imageUrl}" alt="${project.title}" loading="lazy" />
+          <img src="${project.imageUrl}" alt="Proyecto ${project.title} — ${project.categoryLabel} por IVS WORKS Panamá" loading="lazy" decoding="async" />
           <div class="project-overlay"></div>
           <div class="project-badge-cat">${project.categoryLabel}</div>
 
@@ -574,7 +574,7 @@ function renderLightboxSlide() {
       thumbsContainer.style.display = 'flex';
       thumbsContainer.innerHTML = gallery.map((item, idx) => `
         <button type="button" class="lightbox-thumb-btn ${idx === activeLightboxIndex ? 'active' : ''}" data-idx="${idx}" title="${item.title}">
-          <img src="${item.url}" alt="${item.title}" />
+          <img src="${item.url}" alt="${item.title}" loading="lazy" decoding="async" />
         </button>
       `).join('');
 

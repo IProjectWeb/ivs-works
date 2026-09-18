@@ -1,5 +1,13 @@
+# Robots.txt for IVS WORKS (https://ivsworks.com)
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: /sitemap.xml
+# Directives for major bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Canonical XML Sitemap
+Sitemap: https://ivsworks.com/sitemap.xml

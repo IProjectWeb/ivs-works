@@ -1,0 +1,24 @@
+{
+  "name": "IVS WORKS — Páginas Web Profesionales en Panamá",
+  "short_name": "IVS WORKS",
+  "description": "Diseño y desarrollo de páginas web profesionales, ultrarrápidas y optimizadas para ventas y WhatsApp en Panamá.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/ivs-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/ivs_works_logo_transparent.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
