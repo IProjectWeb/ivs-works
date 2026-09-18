@@ -712,6 +712,13 @@ function initFAQ() {
 /* ==========================================================================
    5. Contact Form Handler (WhatsApp & Form Submission)
    ========================================================================== */
+// EmailJS Configuration
+const EMAILJS_CONFIG = {
+  publicKey: 'YOUR_PUBLIC_KEY',
+  serviceId: 'YOUR_SERVICE_ID',
+  templateId: 'YOUR_TEMPLATE_ID'
+};
+
 function initContactForm() {
   const form = document.getElementById('quote-form') || document.getElementById('contact-form');
   const btnWA = document.getElementById('btn-submit-whatsapp') || document.getElementById('btn-send-whatsapp');
@@ -847,10 +854,32 @@ function initContactForm() {
       btn.disabled = true;
     }
 
-    if (window.location.protocol === 'file:') {
-      alert('Estás abriendo el archivo localmente desde tu disco duro (file://). Los envíos automáticos de correo requieren probar en tu web online: https://ivsworks.com/#contacto');
+    // 1. Send via EmailJS if credentials are provided
+    if (window.emailjs && EMAILJS_CONFIG.publicKey && EMAILJS_CONFIG.publicKey !== 'YOUR_PUBLIC_KEY') {
+      try {
+        emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
+        await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, {
+          name: data.name,
+          phone: data.phone || 'No especificado',
+          email: data.email,
+          business: data.business || 'No especificado',
+          plan: planLabels[data.plan] || data.plan,
+          urgency: data.urgency,
+          message: data.message || 'Sin mensaje adicional'
+        });
+        showSuccess(data);
+        return;
+      } catch (emailJsErr) {
+        console.error('EmailJS Error:', emailJsErr);
+      } finally {
+        if (btn) {
+          btn.innerHTML = originalContent;
+          btn.disabled = false;
+        }
+      }
     }
 
+    // 2. Direct FormSubmit / Mailto fallback
     try {
       const response = await fetch('https://formsubmit.co/ajax/ivsworks@hotmail.com', {
         method: 'POST',
