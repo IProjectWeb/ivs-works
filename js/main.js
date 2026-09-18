@@ -840,56 +840,96 @@ function initContactForm() {
       btn.disabled = true;
     }
 
+    let isSuccess = false;
+
+    // 1. Try Vercel Serverless Function (/api/contact) - works from any domain/subdomain
     try {
-      const response = await fetch('https://formsubmit.co/ajax/ivsworks@hotmail.com', {
+      const apiRes = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          _subject: `Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`,
-          _template: 'table',
-          _captcha: 'false',
-          Nombre: data.name,
-          WhatsApp_Telefono: data.phone || 'No especificado',
-          Correo_Cliente: data.email,
-          Giro_o_Negocio: data.business || 'No especificado',
-          Plan_de_Interes: planLabels[data.plan] || data.plan,
-          Plazo_Estimado: data.urgency,
-          Mensaje_Detalles: data.message || 'Sin mensaje adicional'
+          ...data,
+          planLabel: planLabels[data.plan] || data.plan
         })
       });
 
-      if (response.ok) {
-        showSuccess(data);
-      } else {
-        throw new Error(`HTTP Error: ${response.status}`);
+      if (apiRes.ok) {
+        const json = await apiRes.json();
+        if (json.success) {
+          isSuccess = true;
+          showSuccess(data);
+          if (btn) {
+            btn.innerHTML = originalContent;
+            btn.disabled = false;
+          }
+          return;
+        }
       }
-    } catch (err) {
-      console.warn('FormSubmit AJAX fallback to mailto:', err);
-      // Fallback to mailto so no lead is ever lost
-      const subject = encodeURIComponent(`Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`);
-      let bodyText = `Hola Isaac,\n\nDeseo cotizar un proyecto web con los siguientes datos:\n\n`;
-      bodyText += `• Nombre: ${data.name}\n`;
-      bodyText += `• Teléfono / WhatsApp: ${data.phone || 'No indicado'}\n`;
-      bodyText += `• Correo Electrónico: ${data.email}\n`;
-      if (data.business) bodyText += `• Giro o tipo de negocio: ${data.business}\n`;
-      bodyText += `• Plan de interés: ${planLabels[data.plan] || data.plan}\n`;
-      bodyText += `• Plazo deseado: ${data.urgency}\n`;
-      if (data.message) {
-        bodyText += `\n• Mensaje / Detalles del proyecto:\n${data.message}\n`;
-      }
-      bodyText += `\n---\nEnviado desde el formulario oficial de ivsworks.com`;
+    } catch (apiErr) {
+      console.warn('/api/contact unavailable, trying direct FormSubmit:', apiErr);
+    }
 
-      const mailtoUrl = `mailto:ivsworks@hotmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
-      window.open(mailtoUrl, '_blank');
-      showSuccess(data);
-    } finally {
-      if (btn) {
-        btn.innerHTML = originalContent;
-        btn.disabled = false;
+    // 2. Direct FormSubmit AJAX fallback
+    if (!isSuccess) {
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/ivsworks@hotmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`,
+            _template: 'table',
+            _captcha: 'false',
+            Nombre: data.name,
+            WhatsApp_Telefono: data.phone || 'No especificado',
+            Correo_Cliente: data.email,
+            Giro_o_Negocio: data.business || 'No especificado',
+            Plan_de_Interes: planLabels[data.plan] || data.plan,
+            Plazo_Estimado: data.urgency,
+            Mensaje_Detalles: data.message || 'Sin mensaje adicional'
+          })
+        });
+
+        if (response.ok) {
+          const resJson = await response.json();
+          if (resJson.success === "true" || resJson.success === true) {
+            isSuccess = true;
+            showSuccess(data);
+            if (btn) {
+              btn.innerHTML = originalContent;
+              btn.disabled = false;
+            }
+            return;
+          }
+        }
+        throw new Error('Direct submission unsuccessful');
+      } catch (err) {
+        console.warn('FormSubmit AJAX fallback to mailto:', err);
+        // Fallback to mailto so no lead is ever lost
+        const subject = encodeURIComponent(`Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`);
+        let bodyText = `Hola Isaac,\n\nDeseo cotizar un proyecto web con los siguientes datos:\n\n`;
+        bodyText += `• Nombre: ${data.name}\n`;
+        bodyText += `• Teléfono / WhatsApp: ${data.phone || 'No indicado'}\n`;
+        bodyText += `• Correo Electrónico: ${data.email}\n`;
+        if (data.business) bodyText += `• Giro o tipo de negocio: ${data.business}\n`;
+        bodyText += `• Plan de interés: ${planLabels[data.plan] || data.plan}\n`;
+        bodyText += `• Plazo deseado: ${data.urgency}\n`;
+        if (data.message) {
+          bodyText += `\n• Mensaje / Detalles del proyecto:\n${data.message}\n`;
+        }
+        bodyText += `\n---\nEnviado desde el formulario oficial de ivsworks.com`;
+
+        const mailtoUrl = `mailto:ivsworks@hotmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+        window.open(mailtoUrl, '_blank');
+        showSuccess(data);
       }
+    }
+
+    if (btn) {
+      btn.innerHTML = originalContent;
+      btn.disabled = false;
     }
   }
 
