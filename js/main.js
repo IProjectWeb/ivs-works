@@ -817,16 +817,58 @@ function initContactForm() {
     });
   }
 
-  if (btnEmail) {
-    btnEmail.addEventListener('click', () => {
-      const data = getFormData();
-      if (!data.name || !data.email) {
-        alert('Por favor completa tu nombre y correo electrónico.');
-        if (!data.name) document.getElementById('form-name')?.focus();
-        else document.getElementById('form-email')?.focus();
-        return;
-      }
+  async function handleDirectEmailSubmit() {
+    const data = getFormData();
+    if (!data.name || !data.email) {
+      alert('Por favor completa tu nombre y correo electrónico para enviar la cotización.');
+      if (!data.name) document.getElementById('form-name')?.focus();
+      else document.getElementById('form-email')?.focus();
+      return;
+    }
 
+    const btn = btnEmail || form?.querySelector('button[type="submit"]');
+    const originalContent = btn ? btn.innerHTML : '';
+
+    if (btn) {
+      btn.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin-icon">
+          <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+          <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+        </svg>
+        <span>Enviando cotización...</span>
+      `;
+      btn.disabled = true;
+    }
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/ivsworks@hotmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`,
+          _template: 'table',
+          _captcha: 'false',
+          Nombre: data.name,
+          WhatsApp_Telefono: data.phone || 'No especificado',
+          Correo_Cliente: data.email,
+          Giro_o_Negocio: data.business || 'No especificado',
+          Plan_de_Interes: planLabels[data.plan] || data.plan,
+          Plazo_Estimado: data.urgency,
+          Mensaje_Detalles: data.message || 'Sin mensaje adicional'
+        })
+      });
+
+      if (response.ok) {
+        showSuccess(data);
+      } else {
+        throw new Error(`HTTP Error: ${response.status}`);
+      }
+    } catch (err) {
+      console.warn('FormSubmit AJAX fallback to mailto:', err);
+      // Fallback to mailto so no lead is ever lost
       const subject = encodeURIComponent(`Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`);
       let bodyText = `Hola Isaac,\n\nDeseo cotizar un proyecto web con los siguientes datos:\n\n`;
       bodyText += `• Nombre: ${data.name}\n`;
@@ -843,32 +885,22 @@ function initContactForm() {
       const mailtoUrl = `mailto:ivsworks@hotmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
       window.open(mailtoUrl, '_blank');
       showSuccess(data);
-    });
+    } finally {
+      if (btn) {
+        btn.innerHTML = originalContent;
+        btn.disabled = false;
+      }
+    }
+  }
+
+  if (btnEmail) {
+    btnEmail.addEventListener('click', handleDirectEmailSubmit);
   }
 
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const data = getFormData();
-
-      if (!data.name || !data.email) {
-        alert('Por favor completa tu nombre y correo electrónico para ponernos en contacto.');
-        return;
-      }
-
-      const submitBtn = form.querySelector('button[type="submit"]');
-      if (submitBtn) {
-        submitBtn.textContent = 'Enviando consulta...';
-        submitBtn.disabled = true;
-      }
-
-      setTimeout(() => {
-        showSuccess(data);
-        if (submitBtn) {
-          submitBtn.textContent = 'Enviar Consulta por Correo';
-          submitBtn.disabled = false;
-        }
-      }, 500);
+      handleDirectEmailSubmit();
     });
   }
 
