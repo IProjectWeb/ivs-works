@@ -714,9 +714,9 @@ function initFAQ() {
    ========================================================================== */
 // EmailJS Configuration
 const EMAILJS_CONFIG = {
-  publicKey: 'YOUR_PUBLIC_KEY',
-  serviceId: 'YOUR_SERVICE_ID',
-  templateId: 'YOUR_TEMPLATE_ID'
+  publicKey: 'ErJYv0gW8oIuOzvjp',
+  serviceId: 'service_bcii6io',
+  templateId: 'template_r5zydwk'
 };
 
 function initContactForm() {
@@ -854,23 +854,37 @@ function initContactForm() {
       btn.disabled = true;
     }
 
-    // 1. Send via EmailJS if credentials are provided
+    // 1. Send via EmailJS (Connected directly to Hotmail/Outlook)
     if (window.emailjs && EMAILJS_CONFIG.publicKey && EMAILJS_CONFIG.publicKey !== 'YOUR_PUBLIC_KEY') {
       try {
         emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
-        await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, {
+        const templateParams = {
           name: data.name,
+          from_name: data.name,
+          user_name: data.name,
           phone: data.phone || 'No especificado',
+          whatsapp: data.phone || 'No especificado',
           email: data.email,
+          user_email: data.email,
+          from_email: data.email,
+          reply_to: data.email,
           business: data.business || 'No especificado',
           plan: planLabels[data.plan] || data.plan,
           urgency: data.urgency,
           message: data.message || 'Sin mensaje adicional'
-        });
+        };
+
+        const res = await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, templateParams);
+        console.log('EmailJS Success:', res);
         showSuccess(data);
+        if (btn) {
+          btn.innerHTML = originalContent;
+          btn.disabled = false;
+        }
         return;
       } catch (emailJsErr) {
         console.error('EmailJS Error:', emailJsErr);
+        alert('Hubo un inconveniente al enviar por EmailJS: ' + (emailJsErr.text || emailJsErr.message || JSON.stringify(emailJsErr)));
       } finally {
         if (btn) {
           btn.innerHTML = originalContent;
