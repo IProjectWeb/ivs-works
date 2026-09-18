@@ -819,10 +819,17 @@ function initContactForm() {
 
   async function handleDirectEmailSubmit() {
     const data = getFormData();
-    if (!data.name || !data.email) {
-      alert('Por favor completa tu nombre y correo electrónico para enviar la cotización.');
-      if (!data.name) document.getElementById('form-name')?.focus();
-      else document.getElementById('form-email')?.focus();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!data.name) {
+      alert('Por favor completa tu nombre completo para enviar la cotización.');
+      document.getElementById('form-name')?.focus();
+      return;
+    }
+
+    if (!data.email || !emailRegex.test(data.email)) {
+      alert('Por favor ingresa un correo electrónico válido (por ejemplo: tu-nombre@gmail.com o empresa@dominio.com).');
+      document.getElementById('form-email')?.focus();
       return;
     }
 
@@ -851,6 +858,8 @@ function initContactForm() {
           _subject: `Nueva Cotización Web - ${data.name} [${planLabels[data.plan] || data.plan}]`,
           _template: 'table',
           _captcha: 'false',
+          email: data.email,
+          _replyto: data.email,
           Nombre: data.name,
           WhatsApp_Telefono: data.phone || 'No especificado',
           Correo_Cliente: data.email,
